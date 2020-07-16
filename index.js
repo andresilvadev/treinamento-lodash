@@ -10,7 +10,7 @@ var times = _.times(5, function () {
 
 console.log("times result: ", times);
 
-// Ronde no console
+// Rode no console
 // $ node index.js
 
 let numbers = [81, 92, 12, 20, 10];
@@ -21,7 +21,7 @@ let filter = _.filter(numbers, function (num) {
 
 console.log("filter result: ", filter);
 
-// Ronde no console
+// Rode no console
 // $ node index.js
 
 let map = _.map(numbers, function (number) {
@@ -77,3 +77,32 @@ console.log("converte objt in array result: ", converteObjInArr);
 // Ocultar dados do objet
 let valorOmitido = _.omit(member, ["birth", "country"]);
 console.log("valor omitido result: ", valorOmitido);
+
+// Agrupando valores
+let listClients = [
+  { id: 1, name: "Google", colaborators: 385000, found: "01-01-1984" },
+  { id: 2, name: "Facebook", colaborators: 283645, found: "01-01-1984" },
+  { id: 3, name: "Twitter", colaborators: 275341, found: "01-01-1984" },
+  { id: 4, name: "Instagram", colaborators: 240354, found: "01-01-1984" },
+];
+
+var youngest = _.chain(listClients)
+  .sortBy("found")
+  .map(function (obj) {
+    return obj.name + " created at " + obj.found;
+  })
+  .head()
+  .value();
+
+console.log("chain result: ", youngest);
+
+// Removendo ultimo item do array
+let removeLastItem = _([1, 2, 3])
+  .tap(function (array) {
+    // Mutate input array.
+    array.pop();
+  })
+  .reverse()
+  .value();
+
+console.log(removeLastItem);
